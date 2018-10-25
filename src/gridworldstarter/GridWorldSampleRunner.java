@@ -26,7 +26,7 @@ public class GridWorldSampleRunner {
         BoxBug buggy = new BoxBug(5);
         world.add(new Location(4,4),buggy);
         
-        world.add(new Location(5, 5), xman);
+        world.add(new Location(7, 9), xman);
         
         world.add(new Location(3,3),new Critter());
         
@@ -39,6 +39,10 @@ public class GridWorldSampleRunner {
             System.out.println("Asdf");
         }
         world.show();
+        
+        
+        HungryCritter hungry = new HungryCritter();
+        world.add(new Location(1,1), hungry);
         
         xman.setDirection(45);
         xman.moveTo(new Location(3,3));
