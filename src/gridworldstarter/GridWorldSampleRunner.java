@@ -21,14 +21,17 @@ public class GridWorldSampleRunner {
 
 
         ActorWorld world = new ActorWorld(new UnboundedGrid<>());
-        Bug xman = new Bug();
+        BoxBug xman = new BoxBug(2);
         //add a BoxBug to 30,30
-        BoxBug buggy = new BoxBug(5);
+        BoxBug buggy = new BoxBug(2);
         world.add(new Location(4,4),buggy);
+       
+       
         
-        world.add(new Location(7, 9), xman);
+        world.add(new Location(0, 0), xman);
         
-        world.add(new Location(3,3),new Critter());
+        
+       
         
         //add a Chameleon Critter to 8,8
         ChameleonCritter crit = new ChameleonCritter();
@@ -44,15 +47,16 @@ public class GridWorldSampleRunner {
         HungryCritter hungry = new HungryCritter();
         world.add(new Location(1,1), hungry);
         
-        xman.setDirection(45);
-        xman.moveTo(new Location(3,3));
-        xman.setDirection(225);
+       
         
         SBug beener = new SBug(5);
         world.add(new Location(2,2),beener);
        
         ObliteratorCritter ob = new ObliteratorCritter();
-        world.add(new Location(9,9),ob);
+        world.add(new Location(7,7),ob);
+     
+        TimidCritter ti = new TimidCritter();
+        world.add(new Location(20,20),ti);
 
     }
     

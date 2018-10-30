@@ -19,10 +19,12 @@ public class ObliteratorCritter extends Critter {
         for(int i=0;i<actors.size();i++){
             if(!((actors.get(i))instanceof Critter)){
                 actors.get(i).removeSelfFromGrid();
-                actors.remove(i);
+                
                 
             }
         }
+        
+        actors.clear();
         
        
        

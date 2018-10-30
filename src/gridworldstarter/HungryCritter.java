@@ -22,7 +22,7 @@ public class HungryCritter extends Critter {
     public static final int NECK_SIZE = 2/* a positive number */;
     public static final int MAX_HUNGRY_STEPS = 3/* a positive number */;
     public int eaten=0;
-    public int hungrySteps;
+    public int hungrySteps=0;
 //    
   
     public ArrayList<Actor> getActors() {
@@ -33,6 +33,7 @@ public class HungryCritter extends Critter {
         for (int y = -NECK_SIZE; y <= NECK_SIZE; y++) {
             for (int x = -NECK_SIZE; x <= NECK_SIZE; x++) {
                 try {
+                    
                     Location testLocation = new Location(this.getLocation().getRow() + y, this.getLocation().getCol() + x);
 
                     Actor test = getGrid().get(testLocation);
@@ -67,36 +68,39 @@ public class HungryCritter extends Critter {
          System.out.println(flowers.size());
          
         for(int i=0;i<flowers.size();i++){
-            
-            System.out.println("hi");
+             System.out.println("hi");
+            if(eaten<STOMACH_SIZE){
             flowers.get(i).removeSelfFromGrid();
             flowers.get(i).act();
-            flowers.remove(i);
+            
             eaten++;
+            }
+            
+           
             
         }
+         flowers.clear();
         
     }
     
      public void makeMove(Location loc) {
          System.out.println("e "+eaten);
-         
-        
          if(eaten<STOMACH_SIZE){
              hungrySteps++;
-         }else{
-             hungrySteps=0;
+             this.moveTo(loc);
+         }else if(eaten==STOMACH_SIZE){
+                hungrySteps=0;
          }
+         
          System.out.println("h "+hungrySteps);
          eaten=0;
          if(hungrySteps>=MAX_HUNGRY_STEPS){
              this.removeSelfFromGrid();
-         }else{
-             this.moveTo(loc);
-         }
+         
      }
 //    public ArrayList<Actor> getActors() {
 //        ArrayList<Actor> temp = new ArrayList<Actor>;
 //        return 
 //    }
+}
 }
