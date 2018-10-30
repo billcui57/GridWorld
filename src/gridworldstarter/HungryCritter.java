@@ -21,21 +21,22 @@ public class HungryCritter extends Critter {
     public static final int STOMACH_SIZE = 5 /* a positive number */;
     public static final int NECK_SIZE = 2/* a positive number */;
     public static final int MAX_HUNGRY_STEPS = 3/* a positive number */;
-
+    public int eaten=0;
+    public int hungrySteps;
 //    
-//    @Override
+  
     public ArrayList<Actor> getActors() {
 
         ArrayList<Actor> actors = new ArrayList<Actor>();
       
 
-        for (int y = -NECK_SIZE; y < NECK_SIZE; y++) {
-            for (int x = -NECK_SIZE; x < NECK_SIZE; x++) {
+        for (int y = -NECK_SIZE; y <= NECK_SIZE; y++) {
+            for (int x = -NECK_SIZE; x <= NECK_SIZE; x++) {
                 try {
                     Location testLocation = new Location(this.getLocation().getRow() + y, this.getLocation().getCol() + x);
 
                     Actor test = getGrid().get(testLocation);
-
+                    
                     if ((sameLocation(test.getLocation(), testLocation)) && (test instanceof Flower) ) {
                         actors.add(test);
                     }
@@ -60,14 +61,40 @@ public class HungryCritter extends Critter {
             return false;
         }
     }
-
-    public void processActors(ArrayList<Actor> actors) {
-
-        for(int i=0;i<actors.size();i++){
-            actors.get(i).removeSelfFromGrid();
-            actors.remove(i);
+    
+  
+    public void processActors(ArrayList<Actor> flowers) {
+         System.out.println(flowers.size());
+         
+        for(int i=0;i<flowers.size();i++){
+            
+            System.out.println("hi");
+            flowers.get(i).removeSelfFromGrid();
+            flowers.get(i).act();
+            flowers.remove(i);
+            eaten++;
+            
         }
+        
     }
+    
+     public void makeMove(Location loc) {
+         System.out.println("e "+eaten);
+         
+        
+         if(eaten<STOMACH_SIZE){
+             hungrySteps++;
+         }else{
+             hungrySteps=0;
+         }
+         System.out.println("h "+hungrySteps);
+         eaten=0;
+         if(hungrySteps>=MAX_HUNGRY_STEPS){
+             this.removeSelfFromGrid();
+         }else{
+             this.moveTo(loc);
+         }
+     }
 //    public ArrayList<Actor> getActors() {
 //        ArrayList<Actor> temp = new ArrayList<Actor>;
 //        return 
