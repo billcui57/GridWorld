@@ -15,11 +15,15 @@ import java.util.ArrayList;
  * @author 348848128
  */
 public class TimidCritter extends Critter {
-    private static final int MAX_EXPLORATION_STEPS=10;
+    private int maxExplorationSteps=10;
     private ArrayList<Location> exploredLocations = new ArrayList<Location>();
     int exploredSteps=0;
          int toRetractSteps=0;
          boolean runOnce=true;
+         
+         public TimidCritter(int newMaxExplorationSteps){
+             maxExplorationSteps=newMaxExplorationSteps;
+         }
          
      public void makeMove(Location loc) {
           if(runOnce){
@@ -27,12 +31,12 @@ public class TimidCritter extends Critter {
               runOnce=false;
           }
          
-          if(exploredSteps<MAX_EXPLORATION_STEPS){
+          if(exploredSteps<maxExplorationSteps){
               exploredLocations.add(loc);
                this.moveTo(loc);
                exploredSteps++;
                toRetractSteps=exploredSteps;
-          }else if (exploredSteps>=MAX_EXPLORATION_STEPS){
+          }else if (exploredSteps>=maxExplorationSteps){
               System.out.println("retracting");
               this.moveTo(exploredLocations.get(toRetractSteps-1));
               toRetractSteps--;
@@ -48,7 +52,7 @@ public class TimidCritter extends Critter {
           
      }
      
-   public void processActors(ArrayList<Actor> inTheWay) {
+//No need for manual check for if an actor is in the way, since default parent critter will eat it anyways
       
     
 }
