@@ -31,6 +31,7 @@ public class SBug extends Bug {
     /**
      * Act method for the bug to move in an S pattern
      */
+    @Override
     public void act() {
 
         //three phases for the three strokes to draw S

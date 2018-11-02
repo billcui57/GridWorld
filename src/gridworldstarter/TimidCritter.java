@@ -29,6 +29,7 @@ public class TimidCritter extends Critter {
           * Moves to location and retracts back
           * @param loc location to move to
           */
+         @Override
      public void makeMove(Location loc) {
          //adds first location as its last location to retract to
           if(runOnce){

@@ -29,6 +29,7 @@ public class HungryCritter extends Critter {
      * Gets the number of neighboring actors that within the neck size radius of the critter
      * @return the actors
      */
+    @Override
     public ArrayList<Actor> getActors() {
 
         ArrayList<Actor> actors = new ArrayList<Actor>();
@@ -78,6 +79,7 @@ public class HungryCritter extends Critter {
      * 
      * @param flowers all the flower actors that are around the critter within neck radius
      */
+    @Override
     public void processActors(ArrayList<Actor> flowers) {
         
          //gets each flower actor and removes it from the grid 
@@ -101,6 +103,7 @@ public class HungryCritter extends Critter {
      * Critter's move method and also self evaluation
      * @param loc critter location that is to be moved to
      */
+    @Override
      public void makeMove(Location loc) {
          
          //if critter is still hungry, then increment number of hungry steps
