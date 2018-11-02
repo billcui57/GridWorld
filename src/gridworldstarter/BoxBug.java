@@ -1,5 +1,6 @@
 /*
- * Q5: It is only possible to change the size of the square within BoxBug class, as it is a private variable, and there are no setters for that.
+ * Q5: It is not possinle to change the size of square
+       It is only possible to change the size of the square within BoxBug class, as it is a private variable, and there are no setters for that.
  * Q6: The value of steps will be 0 after the boxbug has turned 90 degrees and before it has proceeded to move forward in the next dimension.
        The value of steps will be 0 also after boxbug has been constructed and has no acted yet (act() not run yet)
  */
@@ -35,7 +36,7 @@ public class BoxBug extends Bug
         if (steps < sideLength && canMove())
         {
             //Q4 but there is no move method?
-            //It is a subclass of bug by extending it. This means that it has inherited its methods.
+            //It is a subclass of bug by extending it. This means that it has inherited its move method.
             move();
             steps++;
         }

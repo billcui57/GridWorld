@@ -15,7 +15,12 @@ import java.util.ArrayList;
  * @author 348848128
  */
 public class ObliteratorCritter extends Critter {
+    /**
+     * Kills everything that is not a critter
+     * @param actors number of actors that are to be processed
+     */
     public void processActors(ArrayList<Actor> actors) {
+        //goes through each actor and if it is not an instance of a critter, then it is removed from the grid
         for(int i=0;i<actors.size();i++){
             if(!((actors.get(i))instanceof Critter)){
                 actors.get(i).removeSelfFromGrid();

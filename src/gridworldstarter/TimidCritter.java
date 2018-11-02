@@ -25,21 +25,30 @@ public class TimidCritter extends Critter {
              maxExplorationSteps=newMaxExplorationSteps;
          }
          
+         /**
+          * Moves to location and retracts back
+          * @param loc location to move to
+          */
      public void makeMove(Location loc) {
+         //adds first location as its last location to retract to
           if(runOnce){
               exploredLocations.add(this.getLocation());
               runOnce=false;
           }
          
+          //When it is exploring, then it will add each step that it had moved to in an arraylist
           if(exploredSteps<maxExplorationSteps){
               exploredLocations.add(loc);
                this.moveTo(loc);
                exploredSteps++;
                toRetractSteps=exploredSteps;
-          }else if (exploredSteps>=maxExplorationSteps){
+          }
+          //When retracting, it will move to each step beginning from the end of the arraylist 
+          else if (exploredSteps>=maxExplorationSteps){
               System.out.println("retracting");
               this.moveTo(exploredLocations.get(toRetractSteps-1));
               toRetractSteps--;
+              //done retracting
               if(toRetractSteps-1<0){
                   exploredLocations.clear();
                   System.out.println("done");

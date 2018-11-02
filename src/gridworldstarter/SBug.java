@@ -17,6 +17,10 @@ public class SBug extends Bug {
     private int step;
     private int phase;
 
+    /**
+     * Constructor for bug with length determinator
+     * @param length 
+     */
     public SBug(int length) {
         Slength = length;
         step = 0;
@@ -24,8 +28,12 @@ public class SBug extends Bug {
         this.setDirection(270);
     }
 
+    /**
+     * Act method for the bug to move in an S pattern
+     */
     public void act() {
 
+        //three phases for the three strokes to draw S
         switch (phase) {
             case 0:
                     this.setDirection(270);
@@ -38,6 +46,7 @@ public class SBug extends Bug {
                 break;
         }
         
+        //if the bug has moved the maximum length of the S, then it proceeds to next stroke
         if (step < Slength && this.canMove() && phase<=2) {
                     this.move();
                     step++;

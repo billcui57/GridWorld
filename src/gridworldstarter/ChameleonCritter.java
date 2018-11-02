@@ -20,9 +20,10 @@ public class ChameleonCritter extends Critter {
 
     /**
      * Randomly selects a neighbor and changes this critter's color to be the
-     * same as that neighbor's. If there are no neighbors
+     * same as that neighbor's. If there are no neighbors, then it will darken in colour
      */
     public void processActors(ArrayList<Actor> actors) {
+        //if no neighbours, the darken color, if not then copy that color
         int n = actors.size();
         if (n == 0) {
             darken();
@@ -41,6 +42,7 @@ public class ChameleonCritter extends Critter {
      */
     public void makeMove(Location loc) {
         //add a comment to describe what this does
+        //gets the direction that is needed to proceed from one location to another, and sets it to current direction
         setDirection(getLocation().getDirectionToward(loc));
         //Q2 add a comment to describe what this does and why?
         //This calls the parent class (Critters) to run the parent's makeMove method. The only difference between
@@ -50,7 +52,7 @@ public class ChameleonCritter extends Critter {
                 
         super.makeMove(loc);
         //Q3 what would you need to do to make it drop flowers?
-        //add in add flower method from bug
+        //add in add flower method from bug, extend it? Or use abstract class
     }
 
     /**

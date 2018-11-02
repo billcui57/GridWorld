@@ -31,7 +31,7 @@ public class GridWorldSampleRunner {
         world.add(new Location(0, 0), xman);
         
         
-       
+        world.add(new Location(11,11), new Rock());
         
         //add a Chameleon Critter to 8,8
         ChameleonCritter crit = new ChameleonCritter();
@@ -55,8 +55,8 @@ public class GridWorldSampleRunner {
         ObliteratorCritter ob = new ObliteratorCritter();
         world.add(new Location(7,7),ob);
      
-        TimidCritter ti = new TimidCritter();
-        world.add(new Location(20,20),ti);
+       
+        
 
     }
     

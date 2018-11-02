@@ -25,15 +25,20 @@ public class HungryCritter extends Critter {
     public int hungrySteps=0;
 //    
   
+    /**
+     * Gets the number of neighboring actors that within the neck size radius of the critter
+     * @return the actors
+     */
     public ArrayList<Actor> getActors() {
 
         ArrayList<Actor> actors = new ArrayList<Actor>();
       
-
+        //With in a neck size radius of the critter
         for (int y = -NECK_SIZE; y <= NECK_SIZE; y++) {
             for (int x = -NECK_SIZE; x <= NECK_SIZE; x++) {
                 try {
-                    
+                    //tests each location within the neck radius and if there is an actor that is an instance of flower
+                    //there then add that actor to arraylist
                     Location testLocation = new Location(this.getLocation().getRow() + y, this.getLocation().getCol() + x);
 
                     Actor test = getGrid().get(testLocation);
@@ -47,32 +52,41 @@ public class HungryCritter extends Critter {
             }
         }
 
-        System.out.println(actors.size());
-
-        for (int i = 0; i < actors.size(); i++) {
-            System.out.println(actors.get(i).toString());
-        }
+        
         return actors;
     }
 
+    /**
+     * Helper method that checks if two locations are the same location
+     * @param test1 location 1
+     * @param test2 location 2
+     * @return boolean whether or not they are the same location
+     */
     public boolean sameLocation(Location test1, Location test2) {
+        //if they are the same location then return true
+        
         if ((test1.getCol() == test2.getCol()) && (test1.getRow() == test2.getRow())) {
             return true;
-        } else {
+        } 
+        //else return false
+        else {
             return false;
         }
     }
     
-  
+    /**
+     * 
+     * @param flowers all the flower actors that are around the critter within neck radius
+     */
     public void processActors(ArrayList<Actor> flowers) {
-         System.out.println(flowers.size());
-         
+        
+         //gets each flower actor and removes it from the grid 
         for(int i=0;i<flowers.size();i++){
-             System.out.println("hi");
+  
             if(eaten<STOMACH_SIZE){
             flowers.get(i).removeSelfFromGrid();
             flowers.get(i).act();
-            
+            //increments eaten count
             eaten++;
             }
             
@@ -83,8 +97,13 @@ public class HungryCritter extends Critter {
         
     }
     
+    /**
+     * Critter's move method and also self evaluation
+     * @param loc critter location that is to be moved to
+     */
      public void makeMove(Location loc) {
-         System.out.println("e "+eaten);
+         
+         //if critter is still hungry, then increment number of hungry steps
          if(eaten<STOMACH_SIZE){
              hungrySteps++;
              this.moveTo(loc);
@@ -92,7 +111,7 @@ public class HungryCritter extends Critter {
                 hungrySteps=0;
          }
          
-         System.out.println("h "+hungrySteps);
+         //if critter has had more than the max number of hungry steps, then the critter dies
          eaten=0;
          if(hungrySteps>=MAX_HUNGRY_STEPS){
              this.removeSelfFromGrid();
